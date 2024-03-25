@@ -11,7 +11,7 @@
         <fieldset>
             <legend>Chatbox area form</legend>
             <mat-form-field [floatLabel]="getFloatLabelValue()">
-                <mat-label>Textarea</mat-label>
+                <mat-label>Type your message</mat-label>
                 <input 
                     matInput 
                     [(ngModel)]="newMessage"
@@ -24,7 +24,7 @@
                     type="button"
                     mat-raised-button 
                     color="primary"
-                    (click)="sendMessage()">Primary</button>
+                    (click)="sendMessage()">Submit</button>
             </div>
         </fieldset>
     </form>
