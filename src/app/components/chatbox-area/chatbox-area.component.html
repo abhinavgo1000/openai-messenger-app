@@ -1,1 +1,31 @@
-<p>chatbox-area works!</p>
+<div class="chat-container">
+    <!-- Messages Display Area -->
+    <div class="messages">
+        <ul>
+            <li *ngFor="let message of messages">
+                {{ message.text }} <!-- Assuming each message has a 'text' property -->
+            </li>
+        </ul>
+    </div>
+    <form [formGroup]="options">
+        <fieldset>
+            <legend>Chatbox area form</legend>
+            <mat-form-field [floatLabel]="getFloatLabelValue()">
+                <mat-label>Textarea</mat-label>
+                <input 
+                    matInput 
+                    [(ngModel)]="newMessage"
+                    [ngModelOptions]="{standalone: true}"
+                    placeholder="Type your query here"
+                    (keyup.enter)="sendMessage()">
+            </mat-form-field>
+            <div class="submit-button">
+                <button 
+                    type="button"
+                    mat-raised-button 
+                    color="primary"
+                    (click)="sendMessage()">Primary</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
