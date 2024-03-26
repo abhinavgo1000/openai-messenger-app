@@ -3,7 +3,8 @@
     <div class="messages">
         <ul>
             <li *ngFor="let message of messages">
-                {{ message.text }} <!-- Assuming each message has a 'text' property -->
+                <span #textElement class="text">{{ message }}</span>
+                <span #blinkElement class="text blink"></span>
             </li>
         </ul>
     </div>
