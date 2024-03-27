@@ -25,6 +25,9 @@
                     type="button"
                     mat-raised-button 
                     color="primary"
+                    matTooltip="Click to send your message"
+                    [matTooltipPosition]="position.value!"
+                    aria-label="Submit button for sending message"
                     (click)="sendMessage()">Submit</button>
             </div>
         </fieldset>

@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 
 import { OpenaiChatService } from '../../shared/services/openai-chat.service'
 
@@ -25,7 +26,8 @@ import { OpenaiChatService } from '../../shared/services/openai-chat.service'
     ReactiveFormsModule,
     MatFormFieldModule, 
     MatInputModule, 
-    MatButtonModule],
+    MatButtonModule,
+    MatTooltipModule],
   templateUrl: './chatbox-area.component.html',
   styleUrl: './chatbox-area.component.scss'
 })
@@ -46,6 +48,8 @@ export class ChatboxAreaComponent implements OnInit, OnDestroy, AfterViewInit {
   options = this._formBuilder.group({
     floatLabel: this.floatLabelControl,
   });
+  positionOptions: TooltipPosition[] = ['below'];
+  position = new FormControl(this.positionOptions[0]);
 
   private i = 0;
 
