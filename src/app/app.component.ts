@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { HomePageComponent } from './components/home-page/home-page.component'
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { PageFooterComponent } from './components/page-footer/page-footer.component';
 
@@ -10,7 +9,6 @@ import { PageFooterComponent } from './components/page-footer/page-footer.compon
   standalone: true,
   imports: [
     RouterOutlet, 
-    HomePageComponent,
     PageHeaderComponent,
     PageFooterComponent],
   templateUrl: './app.component.html',
