@@ -43,7 +43,6 @@ export class ChatboxAreaComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() typingSpeedMilliseconds = 300;
 
   newMessage: string = '';
-  private messageSubscription: Subscription;
   floatLabelControl = new FormControl('auto' as FloatLabelType);
   options = this._formBuilder.group({
     floatLabel: this.floatLabelControl,
@@ -52,6 +51,7 @@ export class ChatboxAreaComponent implements OnInit, OnDestroy, AfterViewInit {
   position = new FormControl(this.positionOptions[0]);
 
   private i = 0;
+  private messageSubscription: Subscription;
 
   constructor(
     private chatService: OpenaiChatService,

@@ -1,0 +1,43 @@
+<p>
+    <mat-toolbar color="primary">
+        <button 
+            mat-icon-button 
+            class="nav-icon" 
+            aria-label="Navigation menu button" 
+            [matMenuTriggerFor]="navMenu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #navMenu="matMenu">
+            <button mat-menu-item (click)="navigateToGithub()">Github</button>
+            <button mat-menu-item (click)="navigateToLinkedin()">LinkedIn</button>
+        </mat-menu>
+        <span>Abhinav Goel</span>
+        <span class="nav-spacer"></span>
+        <button 
+            mat-icon-button 
+            class="nav-icon favorite-icon" 
+            aria-label="like our website"
+            [class.highlighted]="isActive"
+            (click)="likeRegistered()">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button 
+            mat-icon-button 
+            class="nav-icon" 
+            aria-label="share our website menu button"
+            [matMenuTriggerFor]="shareMenu">
+            <mat-icon>share</mat-icon>
+        </button>
+        <mat-menu #shareMenu="matMenu">
+            <button mat-menu-item (click)="shareOnFacebook()">
+                <img alt="facebook icon" src="../../../assets/images/icons8-facebook.svg"> Facebook
+            </button>
+            <button mat-menu-item (click)="shareOnTwitter()">
+                <img alt="facebook icon" src="../../../assets/images/icons8-twitter.svg"> Twitter/X
+            </button>
+            <button mat-menu-item (click)="shareOnLinkedin()">
+                <img alt="facebook icon" src="../../../assets/images/icons8-linkedin.svg"> LinkedIn
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+  </p>
