@@ -1,9 +1,12 @@
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Store } from '@ngrx/store';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
+import * as LikeActions from '../../store/like/like.actions';
 
 @Component({
   selector: 'app-page-header',
@@ -19,14 +22,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class PageHeaderComponent {
 
-  @Input() likesCount: number;
-	@Input() isActive: boolean;
+	isActive: boolean;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private store: Store<{ like: boolean }>) {
+      store.select('like').subscribe(state => {
+        this.isActive = state;
+      });
+    }
 
   likeRegistered() {
-    this.likesCount += (this.isActive) ? -1 : 1;
-		this.isActive = !this.isActive;
+		if (this.isActive) {
+      this.store.dispatch(LikeActions.unlike());
+    } else {
+      this.store.dispatch(LikeActions.like());
+    }
   }
 
   navigateToGithub(): void {
