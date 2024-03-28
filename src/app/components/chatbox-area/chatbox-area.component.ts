@@ -1,21 +1,16 @@
-import { 
-  Component, 
-  OnInit, 
-  OnDestroy, 
-  AfterViewInit,
-  ElementRef,
-  Input,
-  Renderer2,
-  ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { map } from 'rxjs';
+import { Store } from '@ngrx/store';
+// import { LetDirective } from '@ngrx/component';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 
-import { OpenaiChatService } from '../../shared/services/openai-chat.service'
+import * as ChatActions from '../../store/chat/chat.actions';
+import { State } from '../../store/chat/chat.reducer';
 
 @Component({
   selector: 'app-chatbox-area',
@@ -31,16 +26,7 @@ import { OpenaiChatService } from '../../shared/services/openai-chat.service'
   templateUrl: './chatbox-area.component.html',
   styleUrl: './chatbox-area.component.scss'
 })
-export class ChatboxAreaComponent implements OnInit, OnDestroy, AfterViewInit {
-
-  @ViewChild('textElement') textElement: ElementRef;
-  @ViewChild('blinkElement') blinkElement: ElementRef;
-
-  @Input() messages: string[] = [];
-  @Input() textColor: 'black';
-  @Input() fontSize: '20px';
-  @Input() blinkWidth = '2px';
-  @Input() typingSpeedMilliseconds = 300;
+export class ChatboxAreaComponent implements OnInit {
 
   newMessage: string = '';
   floatLabelControl = new FormControl('auto' as FloatLabelType);
@@ -50,91 +36,29 @@ export class ChatboxAreaComponent implements OnInit, OnDestroy, AfterViewInit {
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
 
-  private i = 0;
-  private messageSubscription: Subscription;
+  messages$ = this.store.select(state => state.chat.messages).pipe(
+    map(messages => messages.map(message => ({ ...message, isTyping: true })))
+  );
 
   constructor(
-    private chatService: OpenaiChatService,
-    private _formBuilder: FormBuilder,
-    private renderer: Renderer2) {}
+    private store: Store<{ chat: State }>,
+    private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.loadMessages();
-  }
-
-  loadMessages() {
-    this.messageSubscription = this.chatService.getMessages().subscribe({
-      next: (data: any) => this.messages = data,
-      error: (err: any) => console.error(err) // Handle errors appropriately in real app
+    this.store.dispatch(ChatActions.loadMessages());
+    this.messages$.subscribe(messages => {
+      messages.forEach(message => {
+        message.isTyping = true;
+        setTimeout(() => message.isTyping = false, 3000); // 3 seconds
+      });
     });
   }
 
   sendMessage() {
-    this.chatService.sendMessage(this.newMessage).subscribe({
-      next: (response) => {
-        // Optionally handle response
-        this.newMessage = ''; // Reset the input field
-        this.loadMessages();  // Reload messages to include the new one
-      },
-      error: (err: any) => console.error(err) // Handle errors appropriately in real app
-    });
-  }
-
-  ngAfterViewInit(): void {
-    this.initVariables();
-    this.typingEffect();
-  }
-
-  private initVariables(): void {
-    this.renderer.setStyle(
-      this.textElement.nativeElement,
-      'color',
-      this.textColor
-    );
-    this.renderer.setStyle(
-      this.textElement.nativeElement,
-      'font-size',
-      this.fontSize
-    );
-    this.renderer.setStyle(this.textElement.nativeElement, 'padding', '0.1em');
-
-    this.renderer.setStyle(
-      this.blinkElement.nativeElement,
-      'border-right-width',
-      this.blinkWidth
-    );
-    this.renderer.setStyle(
-      this.blinkElement.nativeElement,
-      'border-right-color',
-      this.textColor
-    );
-    this.renderer.setStyle(
-      this.blinkElement.nativeElement,
-      'font-size',
-      this.fontSize
-    );
-  }
-
-  private typingEffect(): void {
-    const word = this.messages[this.i].split('');
-    const loopTyping = () => {
-      if (word.length > 0) {
-        this.textElement.nativeElement.innerHTML += word.shift();
-      } else {
-        return;
-      }
-      setTimeout(loopTyping, this.typingSpeedMilliseconds);
-    };
-    loopTyping();
+    this.store.dispatch(ChatActions.sendMessage({ message: this.newMessage }));
   }
 
   getFloatLabelValue(): FloatLabelType {
     return this.floatLabelControl.value || 'auto';
-  }
-
-  ngOnDestroy() {
-    if (this.messageSubscription) {
-      this.messageSubscription.unsubscribe();
-    }
   }
 }
