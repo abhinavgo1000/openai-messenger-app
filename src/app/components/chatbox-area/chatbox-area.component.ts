@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map } from 'rxjs';
 import { Store } from '@ngrx/store';
-// import { LetDirective } from '@ngrx/component';
+import { LetDirective } from '@ngrx/component';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +19,7 @@ import { State } from '../../store/chat/chat.reducer';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    LetDirective,
     MatFormFieldModule, 
     MatInputModule, 
     MatButtonModule,

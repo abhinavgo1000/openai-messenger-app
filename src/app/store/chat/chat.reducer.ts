@@ -1,9 +1,10 @@
 
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as ChatActions from './chat.actions';
+import { Messages } from './messages.interface';
 
 export interface State {
-    messages: any[];
+    messages: Messages[];
     error: any;
 }
 

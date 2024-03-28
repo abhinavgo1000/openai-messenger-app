@@ -1,8 +1,8 @@
 <div class="chat-container">
     <!-- Messages Display Area -->
     <div class="messages">
-        <ul>
-            <li *ngFor="let message of messages$ | async">
+        <ul *ngrxLet="messages$ as messages">
+            <li *ngFor="let message of messages">
                 <span class="message-text" [ngClass]="{'typewriter-effect': message.isTyping}">
                     {{ message.text }}
                 </span>
