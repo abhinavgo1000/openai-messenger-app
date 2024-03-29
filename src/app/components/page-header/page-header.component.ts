@@ -7,6 +7,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import * as LikeActions from '../../store/like/like.actions';
+import * as LikeSelectors from '../../store/like/like.selector';
+import { AppState } from '../../store/app.state';
 
 @Component({
   selector: 'app-page-header',
@@ -26,8 +28,8 @@ export class PageHeaderComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private store: Store<{ like: boolean }>) {
-      store.select('like').subscribe(state => {
+    private store: Store<AppState>) {
+      this.store.select(LikeSelectors.selectIsLiked).subscribe(state => {
         this.isActive = state;
       });
     }

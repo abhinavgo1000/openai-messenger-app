@@ -1,14 +1,17 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as LikeActions from './like.actions';
 
-export const initialState = false;
+export interface LikeState {
+    isActive: boolean;
+}
 
-const _likeReducer = createReducer(
+export const initialState: LikeState = {
+    isActive: false
+};
+
+export const LikeReducer = createReducer(
     initialState,
-    on(LikeActions.like, (state) => true),
-    on(LikeActions.unlike, (state) => false)
+    on(LikeActions.like, (state) => ({ ...state, isActive: true })),
+    on(LikeActions.unlike, (state) => ({ ...state, isActive: false }))
 );
 
-export function LikeReducer(state: boolean | undefined, action: Action) {
-    return _likeReducer(state, action);
-}
