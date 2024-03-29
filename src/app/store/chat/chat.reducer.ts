@@ -3,12 +3,12 @@ import { createReducer, on } from '@ngrx/store';
 import * as ChatActions from './chat.actions';
 import { Messages } from './messages.interface';
 
-export interface State {
+export interface ChatState {
     messages: Messages[];
     error: any;
 }
 
-export const initialState: State = {
+export const initialState: ChatState = {
     messages: [],
     error: null
 };

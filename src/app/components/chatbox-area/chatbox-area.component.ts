@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 
 import * as ChatActions from '../../store/chat/chat.actions';
-import { State } from '../../store/chat/chat.reducer';
+import { selectAllMessages } from '../../store/chat/chat.selector';
 
 @Component({
   selector: 'app-chatbox-area',
@@ -37,12 +37,10 @@ export class ChatboxAreaComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
 
-  messages$ = this.store.select(state => state.chat.messages).pipe(
-    map(messages => messages.map(message => ({ ...message, isTyping: true })))
-  );
+  messages$ = this.store.select(selectAllMessages);
 
   constructor(
-    private store: Store<{ chat: State }>,
+    private store: Store,
     private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
