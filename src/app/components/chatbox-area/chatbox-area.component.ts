@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 
+import { CapitalizeFirstPipe } from '../../shared/pipes/capitalize-first.pipe';
+
 import * as ChatActions from '../../store/chat/chat.actions';
 import { selectAllMessages } from '../../store/chat/chat.selector';
 
@@ -23,7 +25,8 @@ import { selectAllMessages } from '../../store/chat/chat.selector';
     MatFormFieldModule, 
     MatInputModule, 
     MatButtonModule,
-    MatTooltipModule],
+    MatTooltipModule,
+    CapitalizeFirstPipe],
   templateUrl: './chatbox-area.component.html',
   styleUrl: './chatbox-area.component.scss'
 })
