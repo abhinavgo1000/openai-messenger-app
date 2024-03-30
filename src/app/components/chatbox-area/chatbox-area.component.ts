@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { LetDirective } from '@ngrx/component';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';

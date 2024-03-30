@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+
 import * as LikeActions from './like.actions';
 
 export interface LikeState {

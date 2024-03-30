@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { Messages } from './messages.interface';
 
 export const loadMessages = createAction('[Chat] Load Messages');

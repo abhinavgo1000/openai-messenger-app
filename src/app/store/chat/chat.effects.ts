@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as ChatActions from './chat.actions';
+
 import { OpenaiChatService } from '../../shared/services/openai-chat.service';
 
 @Injectable()
