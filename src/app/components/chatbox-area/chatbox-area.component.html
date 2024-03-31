@@ -10,7 +10,10 @@
             </li>
         </ul>
     </div>
-    <form [formGroup]="options">
+    <form 
+        [formGroup]="options" 
+        action="/messages" 
+        method="post">
         <fieldset>
             <legend>Chatbox area form</legend>
             <mat-form-field [floatLabel]="getFloatLabelValue()">
@@ -24,7 +27,7 @@
             </mat-form-field>
             <div class="submit-button">
                 <button 
-                    type="button"
+                    type="submit"
                     mat-raised-button 
                     color="primary"
                     matTooltip="Click to send your message"
