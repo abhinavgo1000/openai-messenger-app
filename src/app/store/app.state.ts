@@ -2,6 +2,7 @@ import { Messages } from './chat/messages.interface';
 
 export interface LikeState {
     isActive: boolean;
+    changeCount: number;
 }
 
 export interface ChatState {
