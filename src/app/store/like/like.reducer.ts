@@ -15,6 +15,6 @@ export const initialState: LikeState = {
 export const LikeReducer = createReducer(
     initialState,
     on(LikeActions.like, (state) => ({ ...state, isActive: true, changeCount: state.changeCount + 1 })),
-    on(LikeActions.unlike, (state) => ({ ...state, isActive: false, changeCount: state.changeCount + 1 }))
+    on(LikeActions.unlike, (state) => ({ ...state, isActive: false, changeCount: state.changeCount - 1 }))
 );
 
