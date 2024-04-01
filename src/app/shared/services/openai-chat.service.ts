@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class OpenaiChatService {
 
-  private apiUrl = 'https://your-api-endpoint.com/messages'; // TODO: replace with the API endpoint from NodeJS API
+  private apiUrl = 'http://localhost:5000/messages'; // TODO: replace with the API endpoint from NodeJS API
 
   constructor(private http: HttpClient) { }
 
