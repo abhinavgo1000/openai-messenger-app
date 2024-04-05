@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, tap, map, mergeMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as ChatActions from './chat.actions';
 
@@ -11,8 +11,8 @@ export class ChatEffects {
     loadMessages$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ChatActions.loadMessages),
-            mergeMap(() => this.chatService.getMessages().pipe(
-                map(messages => ChatActions.loadMessagesSuccess({ messages })),
+            switchMap(() => this.chatService.getMessages().pipe(
+                mergeMap((messages) => of(ChatActions.loadMessagesSuccess({ messages }))),
                 catchError(error => of(ChatActions.loadMessagesFailure({ error })))
             ))
         )
@@ -21,11 +21,8 @@ export class ChatEffects {
     sendMessage$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ChatActions.sendMessage),
-            mergeMap((action) => this.chatService.sendMessage(action.message).pipe(
-                map(response => ChatActions.sendMessageSuccess({ response })),
-                catchError(error => of(ChatActions.sendMessageFailure({ error })))
-            ))
-        )
+            tap((action) => this.chatService.sendMessage(action.message))
+        ), { dispatch: false }
     );
 
     constructor(

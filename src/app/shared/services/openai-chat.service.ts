@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Socket, io } from 'socket.io-client';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,15 +7,27 @@ import { Observable } from 'rxjs';
 })
 export class OpenaiChatService {
 
-  private apiUrl = 'http://localhost:5000/messages'; // TODO: replace with the API endpoint from NodeJS API
+  private socket: Socket;
 
-  constructor(private http: HttpClient) { }
-
-  sendMessage(message: string): Observable<any> {
-    return this.http.post(this.apiUrl, { message });
+  constructor() {
+    this.socket = io('http://localhost:5000/messages', {
+      withCredentials: true,
+      extraHeaders: {
+        'message-header': 'abcd'
+      }
+    });
   }
 
-  getMessages(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  sendMessage(message: string) {
+    this.socket.emit('new-message', message);
+  }
+
+  getMessages() {
+    return new Observable<string[]>(observer => {
+      this.socket.on('new-message', (data) => {
+        observer.next(data);
+      });
+      return () => { this.socket.disconnect(); };
+    });
   }
 }

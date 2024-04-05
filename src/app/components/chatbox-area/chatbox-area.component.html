@@ -4,8 +4,8 @@
         <ul *ngrxLet="messages$ as messages">
             <li><span>{{ newMessage | capitalizeFirst }}</span></li>
             <li *ngFor="let message of messages">
-                <span class="message-text" [ngClass]="{'typewriter-effect': message.isTyping}">
-                    {{ message.text | capitalizeFirst }}
+                <span class="message-text" [ngClass]="{'typewriter-effect': isTyping}">
+                    {{ message | capitalizeFirst }}
                 </span>
             </li>
         </ul>

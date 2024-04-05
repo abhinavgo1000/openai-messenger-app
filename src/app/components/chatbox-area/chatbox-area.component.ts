@@ -39,6 +39,8 @@ export class ChatboxAreaComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
 
+  isTyping = false;
+
   messages$ = this.store.select(selectAllMessages);
 
   constructor(
@@ -48,9 +50,9 @@ export class ChatboxAreaComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(ChatActions.loadMessages());
     this.messages$.subscribe(messages => {
-      messages.forEach(message => {
-        message.isTyping = true;
-        setTimeout(() => message.isTyping = false, 3000); // 3 seconds
+      messages.forEach(() => {
+        this.isTyping = true;
+        setTimeout(() => this.isTyping = false, 3000); // 3 seconds
       });
     });
   }
