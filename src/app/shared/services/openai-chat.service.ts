@@ -19,12 +19,12 @@ export class OpenaiChatService {
   }
 
   sendMessage(message: string) {
-    this.socket.emit('new-message', message);
+    this.socket.emit('chat message', message);
   }
 
   getMessages() {
     return new Observable<string[]>(observer => {
-      this.socket.on('new-message', (data) => {
+      this.socket.on('chat message', (data) => {
         observer.next(data);
       });
       return () => { this.socket.disconnect(); };
