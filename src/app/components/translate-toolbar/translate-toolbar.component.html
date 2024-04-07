@@ -1,0 +1,6 @@
+<div class="translate-bar-container">
+    <mat-button-toggle-group name="language" aria-label="Page Language" [value]="selectedLang">
+        <mat-button-toggle value="en" (click)="enClick.emit('en')">English</mat-button-toggle>
+        <mat-button-toggle value="es" (click)="esClick.emit('es')">Español</mat-button-toggle>
+    </mat-button-toggle-group>
+</div>

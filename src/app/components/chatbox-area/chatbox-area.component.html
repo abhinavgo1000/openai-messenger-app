@@ -1,8 +1,7 @@
 <div class="chat-container">
     <!-- Messages Display Area -->
     <div class="messages">
-        <ul *ngrxLet="messages$ as messages">
-            <li><span>{{ newMessage | capitalizeFirst }}</span></li>
+        <ul *ngrxLet="messages$ as messages" id="messages">
             <li *ngFor="let message of messages">
                 <span class="message-text" [ngClass]="{'typewriter-effect': isTyping}">
                     {{ message | capitalizeFirst }}

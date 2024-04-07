@@ -1,17 +1,11 @@
 {
-    "homePage": {
-        "pageTitle": "Welcome to the GPT Chatbot!",
-        "pageSubTitle": "Enter your query in the text block below, and get a personalized reply."
-    },
-    "chatbox": {
-        "chatboxLegend": "Chatbox area form",
-        "chatAreaLabel": "Type your message",
-        "chatAreaPlaceholder": "Type your query here",
-        "submitButtonTooltip": "Click to send your message",
-        "submitButtonAria": "Submit button for sending message",
-        "submitButtonLabel": "Submit"
-    },
-    "footer": {
-        "footerText": "Made using Angular 17"
-    }
+    "pageTitle": "Welcome to the GPT Chatbot!",
+    "pageSubTitle": "Enter your query in the text block below, and get a personalized reply.",
+    "chatboxLegend": "Chatbox area form",
+    "chatAreaLabel": "Type your message",
+    "chatAreaPlaceholder": "Type your query here",
+    "submitButtonTooltip": "Click to send your message",
+    "submitButtonAria": "Submit button for sending message",
+    "submitButtonLabel": "Submit",
+    "footerText": "Made using Angular 17"
 }

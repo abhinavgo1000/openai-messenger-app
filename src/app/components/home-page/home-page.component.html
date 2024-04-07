@@ -1,6 +1,10 @@
 <div class="home-page-content">
-    <h1>{{pageTitle}}</h1>
-    <h3>{{pageSubTitle}}</h3>
+    <app-translate-toolbar 
+        class="translate-toolbar"
+        (enClick)="switchLanguage($event)"
+        (esClick)="switchLanguage($event)"></app-translate-toolbar>
+    <h1 [appDynamicTranslation]="'pageTitle'"></h1>
+    <h3 [appDynamicTranslation]="'pageSubTitle'"></h3>
     <mat-card>
         <mat-card-content>
             <app-chatbox-area></app-chatbox-area>

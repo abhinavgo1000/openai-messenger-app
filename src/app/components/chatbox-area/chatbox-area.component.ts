@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 
 import { CapitalizeFirstPipe } from '../../shared/pipes/capitalize-first.pipe';
+import { DynamicTranslationDirective } from '../../shared/directives/dynamic-translation.directive';
 
 import * as ChatActions from '../../store/chat/chat.actions';
 import { selectAllMessages } from '../../store/chat/chat.selector';
@@ -25,7 +26,8 @@ import { selectAllMessages } from '../../store/chat/chat.selector';
     MatInputModule, 
     MatButtonModule,
     MatTooltipModule,
-    CapitalizeFirstPipe],
+    CapitalizeFirstPipe,
+    DynamicTranslationDirective],
   templateUrl: './chatbox-area.component.html',
   styleUrl: './chatbox-area.component.scss'
 })
@@ -59,6 +61,15 @@ export class ChatboxAreaComponent implements OnInit {
 
   sendMessage() {
     this.store.dispatch(ChatActions.sendMessage({ message: this.newMessage }));
+    this.displaySentMessage(this.newMessage);
+    this.newMessage = '';
+  }
+
+  private displaySentMessage(message: string) {
+    let messages = document.getElementById('messages');
+    let item = document.createElement('li');
+    item.textContent = message;
+    messages?.appendChild(item);
   }
 
   getFloatLabelValue(): FloatLabelType {
