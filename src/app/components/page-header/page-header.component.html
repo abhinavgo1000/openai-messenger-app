@@ -1,5 +1,5 @@
-<p>
-    <mat-toolbar color="primary">
+<div class="desktop-header" fxFlexFill cdkScrollable>
+    <mat-toolbar color="primary" class="main-header" *ngIf="!toggleSearch">
         <button 
             mat-icon-button 
             class="nav-icon" 
@@ -15,6 +15,13 @@
         <span class="nav-spacer"></span>
         <button 
             mat-icon-button 
+            class="nav-icon" 
+            aria-label="open the search bar"
+            (click)="openSearchBar()">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button 
+            mat-icon-button 
             class="nav-icon favorite-icon" 
             aria-label="like our website"
             [class.highlighted]="isActive"
@@ -24,20 +31,148 @@
         <button 
             mat-icon-button 
             class="nav-icon" 
-            aria-label="share our website menu button"
-            [matMenuTriggerFor]="shareMenu">
-            <mat-icon>share</mat-icon>
+            aria-label="open the messages menu"
+            [matMenuTriggerFor]="messagesMenu">
+            <mat-icon
+                aria-hidden="false"
+                matBadge="5" 
+                matBadgeColor="warn"
+            >
+                mail
+            </mat-icon>
         </button>
-        <mat-menu #shareMenu="matMenu">
-            <button mat-menu-item (click)="shareOnFacebook()">
-                <img alt="facebook icon" src="../../../assets/images/icons8-facebook.svg"> Facebook
-            </button>
-            <button mat-menu-item (click)="shareOnTwitter()">
-                <img alt="facebook icon" src="../../../assets/images/icons8-twitter.svg"> Twitter/X
-            </button>
-            <button mat-menu-item (click)="shareOnLinkedin()">
-                <img alt="facebook icon" src="../../../assets/images/icons8-linkedin.svg"> LinkedIn
-            </button>
+        <mat-menu #messagesMenu="matMenu">
+            <button mat-menu-item>Hello and welcome to this site!</button>
+            <button mat-menu-item>Check your account for more</button>
+        </mat-menu>
+        <button 
+            mat-icon-button 
+            class="nav-icon" 
+            aria-label="open the notifications menu"
+            [matMenuTriggerFor]="notificationMenu">
+            <mat-icon
+                aria-hidden="false"
+                matBadge="15" 
+                matBadgeColor="warn"
+            >
+                notifications
+            </mat-icon>
+        </button>
+        <mat-menu #notificationMenu="matMenu">
+            <button mat-menu-item>Hello welcome to the website!</button>
+            <button mat-menu-item>Check your account now!</button>
+        </mat-menu>
+        <button 
+            mat-icon-button 
+            class="nav-icon" 
+            aria-label="share our website menu button"
+            [matMenuTriggerFor]="accountMenu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #accountMenu="matMenu">
+            <button mat-menu-item (click)="navigateToProfile()">Profile</button>
+            <button mat-menu-item (click)="navigateToAccount()">My account</button>
         </mat-menu>
     </mat-toolbar>
-  </p>
+    
+    <mat-toolbar class="search-block" *ngIf="toggleSearch">
+        <button class="search-icon" mat-icon-button disabled>
+            <mat-icon>search</mat-icon>
+        </button>
+        <input class="search-control" type="text" placeholder="Search" [(ngModel)]="searchText" #searchbar>
+        <button mat-icon-button (click)="closeSearchBar()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>    
+</div>
+
+<div class="device-header" fxFlexFill cdkScrollable>
+    <mat-toolbar color="primary" class="main-header" *ngIf="!toggleSearch">
+        <button 
+            mat-icon-button 
+            class="nav-icon" 
+            aria-label="Navigation menu button" 
+            [matMenuTriggerFor]="navMenu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #navMenu="matMenu">
+            <button mat-menu-item (click)="navigateToGithub()">Github</button>
+            <button mat-menu-item (click)="navigateToLinkedin()">LinkedIn</button>
+        </mat-menu>
+        <span>Abhinav Goel</span>
+        <span class="nav-spacer"></span>
+        <button 
+            mat-icon-button 
+            class="nav-icon" 
+            aria-label="open the search bar"
+            (click)="openSearchBar()">
+            <mat-icon>search</mat-icon>
+        </button>
+        <button 
+            mat-icon-button 
+            class="nav-icon" 
+            aria-label="open the mobile options menu"
+            [matMenuTriggerFor]="mobileOptionsMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #mobileOptionsMenu="matMenu">
+            <button 
+                mat-menu-item
+                (click)="likeRegistered()"
+            >
+                <mat-icon 
+                    [class.mobile-highlighted]="isActive"
+                    [class.mat-icon-no-color]="!isActive">favorite</mat-icon>
+                Like our website!
+            </button>
+            <button 
+                mat-menu-item
+                [matMenuTriggerFor]="messagesMenu"
+            >
+                <mat-icon
+                    aria-hidden="false"
+                    matBadge="5" 
+                    matBadgeColor="warn">mail</mat-icon>
+                Messages
+            </button>
+            <mat-menu #messagesMenu="matMenu">
+                <button mat-menu-item>Hello and welcome to this site!</button>
+                <button mat-menu-item>Check your account for more</button>
+            </mat-menu>
+            <button 
+                mat-menu-item
+                [matMenuTriggerFor]="notificationMenu"
+            >
+                <mat-icon
+                    aria-hidden="false"
+                    matBadge="15" 
+                    matBadgeColor="warn">notifications</mat-icon>
+                Notifications
+            </button>
+            <mat-menu #notificationMenu="matMenu">
+                <button mat-menu-item>Hello welcome to the website!</button>
+                <button mat-menu-item>Check your account now!</button>
+            </mat-menu>
+            <button 
+                mat-menu-item
+                [matMenuTriggerFor]="accountMenu"
+            ><mat-icon>account_circle</mat-icon>
+                Profile
+            </button>
+            <mat-menu #accountMenu="matMenu">
+                <button mat-menu-item (click)="navigateToProfile()">Profile</button>
+                <button mat-menu-item (click)="navigateToAccount()">My account</button>
+            </mat-menu>
+        </mat-menu>    
+    </mat-toolbar>
+    
+    <mat-toolbar class="search-block" *ngIf="toggleSearch">
+        <button class="search-icon" mat-icon-button disabled>
+            <mat-icon>search</mat-icon>
+        </button>
+        <input class="search-control" type="text" placeholder="Search" [(ngModel)]="searchText" #searchbar>
+        <button mat-icon-button (click)="closeSearchBar()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>   
+</div>
