@@ -42,8 +42,8 @@
             </mat-icon>
         </button>
         <mat-menu #messagesMenu="matMenu">
-            <button mat-menu-item>Hello and welcome to this site!</button>
-            <button mat-menu-item>Check your account for more</button>
+            <button mat-menu-item (click)="goToWelcome()">Hello and welcome to this site!</button>
+            <button mat-menu-item (click)="goToCheck()">Check your account for more</button>
         </mat-menu>
         <button 
             mat-icon-button 
@@ -59,8 +59,8 @@
             </mat-icon>
         </button>
         <mat-menu #notificationMenu="matMenu">
-            <button mat-menu-item>Hello welcome to the website!</button>
-            <button mat-menu-item>Check your account now!</button>
+            <button mat-menu-item (click)="goToWelcome()">Hello welcome to the website!</button>
+            <button mat-menu-item (click)="goToCheck()">Check your account now!</button>
         </mat-menu>
         <button 
             mat-icon-button 

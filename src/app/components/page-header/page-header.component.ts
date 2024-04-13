@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DOCUMENT } from '@angular/common';
 import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +31,8 @@ import { AppState } from '../../store/app.state';
 })
 export class PageHeaderComponent {
 
+  @Output() openDialog = new EventEmitter();
+
 	isActive: boolean;
 
   toggleSearch = false;
@@ -62,9 +64,21 @@ export class PageHeaderComponent {
     this.document.location.href = 'https://www.linkedin.com/in/abhinav-goel-41a87a20b/';
   }
 
-  navigateToProfile() {}
+  goToWelcome() {
+    this.openDialog.emit(0);
+  }
 
-  navigateToAccount() {}
+  goToCheck() {
+    this.openDialog.emit(1);
+  }
+
+  navigateToProfile() {
+    this.openDialog.emit(2);
+  }
+
+  navigateToAccount() {
+    this.openDialog.emit(3);
+  }
 
   openSearchBar() {
     this.toggleSearch = true;

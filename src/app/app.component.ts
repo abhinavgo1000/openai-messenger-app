@@ -12,10 +12,14 @@ import { Observable, fromEvent, filter, of, map } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialog } from '@angular/material/dialog';
 
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { PageFooterComponent } from './components/page-footer/page-footer.component';
 import { ScrollUpComponent } from './components/scroll-up/scroll-up.component';
+import { DataDialogComponent } from './components/data-dialog/data-dialog.component';
+
+import { DialogRenderData } from './shared/dialog-data/dialog-data';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -52,7 +56,8 @@ export class AppComponent implements OnInit {
   );
 
   constructor(
-    private router: Router) {
+    private router: Router,
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -66,6 +71,16 @@ export class AppComponent implements OnInit {
       ),
       map((e) => e instanceof NavigationStart)
     );
+  }
+
+  openDialog(i: number): void {
+    const dialogRef = this.dialog.open(DataDialogComponent, {
+      data: DialogRenderData[i],
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   onScrollToTop(): void {

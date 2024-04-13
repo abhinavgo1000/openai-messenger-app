@@ -13,7 +13,7 @@ export class OpenaiChatService {
     this.socket = io('http://localhost:5000/messages', {
       withCredentials: true,
       extraHeaders: {
-        'message-header': 'abcd'
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type, Accept'
       }
     });
   }
