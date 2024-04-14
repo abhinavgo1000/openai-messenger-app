@@ -1,9 +1,18 @@
-<div class="footer">
-    <mat-toolbar color="primary">
-        <span>&#169; 2024 
-            <a href="https://github.com/abhinavgo1000" target="_blank" rel="noopener noreferrer">
-                Abhinav Goel
-            </a>
-        </span>
+<footer class="footer">
+    <mat-toolbar class="toolbar-nav">
+        <button mat-flat-button (click)="navigateToHome()">
+            <mat-icon class="material-icons color_blue">
+                home</mat-icon>
+            <span>Home</span>
+        </button>
+        <button mat-flat-button (click)="navigateToMessenger()">
+            <mat-icon class="material-icons color_blue">messages
+            </mat-icon>
+            <span>GPT Chatbot</span>
+        </button>
+        <button mat-flat-button (click)="navigateToAbout()">
+            <mat-icon class="material-icons color_blue">people</mat-icon>
+            <span>About me</span>
+        </button>
     </mat-toolbar>
-</div>
+</footer>

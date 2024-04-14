@@ -7,6 +7,8 @@ import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 import { CapitalizeFirstPipe } from '../../shared/pipes/capitalize-first.pipe';
 import { DynamicTranslationDirective } from '../../shared/directives/dynamic-translation.directive';
@@ -26,6 +28,8 @@ import { selectAllMessages } from '../../store/chat/chat.selector';
     MatInputModule, 
     MatButtonModule,
     MatTooltipModule,
+    MatDividerModule,
+    MatListModule,
     CapitalizeFirstPipe,
     DynamicTranslationDirective],
   templateUrl: './chatbox-area.component.html',
