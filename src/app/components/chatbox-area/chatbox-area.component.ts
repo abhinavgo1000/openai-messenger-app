@@ -74,7 +74,6 @@ export class ChatboxAreaComponent implements OnInit {
   }
 
   private displaySentMessage(message: string) {
-    // this.placeToRender.clear();
     let sentMsg = this.placeToRender.createComponent(SentMsgContainerComponent);
     if (sentMsg) {
       sentMsg.instance.message = message;
