@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+
+import { SentMsgContainerComponent } from '../sent-msg-container/sent-msg-container.component';
 
 import { CapitalizeFirstPipe } from '../../shared/pipes/capitalize-first.pipe';
 import { DynamicTranslationDirective } from '../../shared/directives/dynamic-translation.directive';
@@ -45,6 +47,8 @@ export class ChatboxAreaComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
 
+  @ViewChild('placeToRender', {read: ViewContainerRef}) placeToRender: ViewContainerRef;
+
   isTyping = false;
 
   messages$ = this.store.select(selectAllMessages);
@@ -70,10 +74,11 @@ export class ChatboxAreaComponent implements OnInit {
   }
 
   private displaySentMessage(message: string) {
-    let messages = document.getElementById('messages');
-    let item = document.createElement('li');
-    item.textContent = message;
-    messages?.appendChild(item);
+    // this.placeToRender.clear();
+    let sentMsg = this.placeToRender.createComponent(SentMsgContainerComponent);
+    if (sentMsg) {
+      sentMsg.instance.message = message;
+    }
   }
 
   getFloatLabelValue(): FloatLabelType {

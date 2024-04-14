@@ -2,12 +2,13 @@
     <!-- Messages Display Area -->
     <div class="messages">
         <mat-list *ngrxLet="messages$ as messages" id="messages">
-            <mat-list-item *ngFor="let message of messages">
-                <span class="message-text" [ngClass]="{'typewriter-effect': isTyping}">
-                    {{ message | capitalizeFirst }}
-                </span>
-            </mat-list-item>
-            @if (messages) {
+            <ng-container #placeToRender></ng-container>
+            @for (message of messages; track message) {
+                <mat-list-item>
+                    <span class="message-text" [ngClass]="{'typewriter-effect': isTyping}">
+                        {{ message | capitalizeFirst }}
+                    </span>
+                </mat-list-item>
                 <mat-divider></mat-divider>
             }
         </mat-list>
@@ -22,8 +23,7 @@
                     matInput 
                     [(ngModel)]="newMessage"
                     [ngModelOptions]="{standalone: true}"
-                    placeholder="Type your query here"
-                    (keyup.enter)="sendMessage()">
+                    placeholder="Type your query here">
             </mat-form-field>
             <div class="submit-button">
                 <button 
