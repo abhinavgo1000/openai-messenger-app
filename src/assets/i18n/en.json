@@ -1,6 +1,7 @@
 {
-    "pageTitle": "Welcome to the GPT Chatbot!",
-    "pageSubTitle": "Enter your query in the text block below, and get a personalized reply.",
+    "pageTitle": "Welcome to the Messages Page!",
+    "pageSubTitle": "Start typing your messages right away to communicate with your loved ones. The service is provided by Socket.io and Express. Connect as many clients as you like and start typing in right away!",
+    "pageDesc": "Type your message in the textbox below.",
     "chatboxLegend": "Chatbox area form",
     "chatAreaLabel": "Type your message",
     "chatAreaPlaceholder": "Type your query here",
