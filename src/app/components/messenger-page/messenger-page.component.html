@@ -1,1 +1,13 @@
-<p>messenger-page works!</p>
+<div class="messenger-page-content">
+    <app-translate-toolbar 
+        class="translate-toolbar"
+        (enClick)="switchLanguage($event)"
+        (esClick)="switchLanguage($event)"></app-translate-toolbar>
+    <h1 [appDynamicTranslation]="'pageTitle'"></h1>
+    <h3 [appDynamicTranslation]="'pageSubTitle'"></h3>
+    <mat-card>
+        <mat-card-content>
+            <app-chatbox-area></app-chatbox-area>
+        </mat-card-content>
+    </mat-card>
+</div>

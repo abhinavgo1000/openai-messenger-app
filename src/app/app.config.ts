@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { provideStore, provideState } from '@ngrx/store';
+import { provideStore, provideState, StoreModule } from '@ngrx/store';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideEffects } from '@ngrx/effects';
@@ -11,6 +11,7 @@ import { provideEffects } from '@ngrx/effects';
 import { routes } from './app.routes';
 import { HttpLoaderFactory } from './app.component';
 import { ChatEffects } from './store/chat/chat.effects';
+import { ChatReducer } from './store/chat/chat.reducer';
 import { LikeReducer } from './store/like/like.reducer';
 
 export const appConfig: ApplicationConfig = {
@@ -26,7 +27,10 @@ export const appConfig: ApplicationConfig = {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient],
         },
-      })
+      }),
+      StoreModule.forRoot({
+        chat: ChatReducer
+      }),
     ),
     provideStore(), 
     provideState(

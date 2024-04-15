@@ -10,9 +10,7 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./components/home-page/home-page.component')
                 .then(m => m.HomePageComponent),
-        providers: [
-            provideState({ name: 'chat', reducer: ChatReducer })
-        ]
+        providers: []
     },
     {
         path: '',
@@ -38,7 +36,9 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./components/messenger-page/messenger-page.component')
                 .then(m => m.MessengerPageComponent),
-        providers: []
+        providers: [
+            provideState({ name: 'chat', reducer: ChatReducer })
+        ]
     },
     {
         path: '**',

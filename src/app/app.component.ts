@@ -8,6 +8,7 @@ import {
   NavigationCancel,
   NavigationError } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 import { Observable, fromEvent, filter, of, map } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -23,7 +24,7 @@ import { DialogRenderData } from './shared/dialog-data/dialog-data';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
 
 @Component({
