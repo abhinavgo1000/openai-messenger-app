@@ -6,7 +6,7 @@ export interface DialogData {
     imgAlt: string;
     email: string;
     telephone: string;
-    username: string,
+    userName: string,
     password: string,
     acceptLabel: string;
     closeLabel: string;

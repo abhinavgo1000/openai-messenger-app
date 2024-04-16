@@ -9,7 +9,7 @@ export const DialogRenderData: DialogData[] = [
         imgAlt: '',
         email: '',
         telephone: '',
-        username: '',
+        userName: '',
         password: '',
         acceptLabel: 'OK',
         closeLabel: 'Cancel'
@@ -22,7 +22,7 @@ export const DialogRenderData: DialogData[] = [
         imgAlt: '',
         email: '',
         telephone: '',
-        username: '',
+        userName: '',
         password: '',
         acceptLabel: 'OK',
         closeLabel: 'Cancel'
@@ -35,7 +35,7 @@ export const DialogRenderData: DialogData[] = [
         imgAlt: 'profile placeholder',
         email: 'test@abc.com',
         telephone: '(555)555-5555',
-        username: '',
+        userName: '',
         password: '',
         acceptLabel: 'OK',
         closeLabel: 'Cancel'
@@ -46,9 +46,9 @@ export const DialogRenderData: DialogData[] = [
         profileName: '',
         imgSrc: '',
         imgAlt: '',
-        email: '',
+        email: 'test@abc.com',
         telephone: '',
-        username: 'abhinavgl',
+        userName: 'abhinavgl',
         password: 'Test@123',
         acceptLabel: 'Ok',
         closeLabel: 'Cancel'
