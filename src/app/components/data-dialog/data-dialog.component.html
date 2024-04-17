@@ -14,22 +14,6 @@
             </mat-form-field>
         </div>
     }
-    @if (data.email !== '') {
-        <div class="full-width">
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input type="email" placeholder="Your Email Address" matInput [(ngModel)]="data.email" />
-            </mat-form-field>
-        </div>
-    }
-    @if (data.telephone !== '') {
-        <div class="full-width">
-            <mat-form-field>
-                <mat-label>Phone Number</mat-label>
-                <input type="tel" placeholder="Your Phone Number" matInput [(ngModel)]="data.telephone" />
-            </mat-form-field>
-        </div>
-    }
     @if (data.userName !== '') {
         <div class="full-width">
             <mat-form-field>
@@ -43,6 +27,22 @@
             <mat-form-field>
                 <mat-label>Password</mat-label>
                 <input type="password" placeholder="Your Password" matInput [(ngModel)]="data.password" />
+            </mat-form-field>
+        </div>
+    }
+    @if (data.email !== '') {
+        <div class="full-width">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="email" placeholder="Your Email Address" matInput [(ngModel)]="data.email" />
+            </mat-form-field>
+        </div>
+    }
+    @if (data.telephone !== '') {
+        <div class="full-width">
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input type="tel" placeholder="Your Phone Number" matInput [(ngModel)]="data.telephone" />
             </mat-form-field>
         </div>
     }

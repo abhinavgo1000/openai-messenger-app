@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, HttpClient, HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, HttpClient, HttpClientModule, withFetch } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { provideStore, provideState, StoreModule } from '@ngrx/store';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), 
     provideClientHydration(), 
-    provideHttpClient(), 
+    provideHttpClient(withFetch()), 
     importProvidersFrom(HttpClientModule),
     importProvidersFrom(
       TranslateModule.forRoot({

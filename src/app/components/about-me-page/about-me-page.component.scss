@@ -1,0 +1,11 @@
+.about-me-page-content {
+    margin: 20px;
+    height: max-content;;
+}
+
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
