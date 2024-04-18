@@ -4,7 +4,7 @@
         <fieldset>
             <legend>Login area form</legend>
             <div>
-                <mat-form-field class="half-width">
+                <mat-form-field class="half-width" [floatLabel]="getFloatLabelValue()">
                     <mat-label>Email</mat-label>
                     <input 
                         type="email" 
@@ -21,7 +21,7 @@
                 </mat-form-field>
             </div>
             <div>
-                <mat-form-field class="half-width">
+                <mat-form-field class="half-width" [floatLabel]="getFloatLabelValue()">
                     <mat-label>Password</mat-label>
                     <input 
                         type="password" 
