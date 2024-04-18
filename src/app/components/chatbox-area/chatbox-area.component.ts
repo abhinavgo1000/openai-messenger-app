@@ -40,6 +40,7 @@ import { selectAllMessages } from '../../store/chat/chat.selector';
 export class ChatboxAreaComponent implements OnInit {
 
   newMessage: string = '';
+  
   floatLabelControl = new FormControl('auto' as FloatLabelType);
   options = this._formBuilder.group({
     floatLabel: this.floatLabelControl,

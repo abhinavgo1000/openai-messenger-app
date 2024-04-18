@@ -1,1 +1,15 @@
-<p>login-page works!</p>
+<div class="login-page-content">
+    <app-translate-toolbar
+        (enClick)="switchLanguage($event)"
+        (esClick)="switchLanguage($event)"></app-translate-toolbar>
+        <h1>Welcome to Chatbox Application!</h1>
+        <h3>Please sign in or sign up to begin chatting away with your loved ones.</h3>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Enter your login details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-user-login></app-user-login>
+        </mat-card-content>
+    </mat-card>
+</div>
