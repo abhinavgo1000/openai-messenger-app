@@ -56,9 +56,6 @@ export class UserLoginComponent implements OnInit {
   matcher = new LoginErrorStateMatcher();
 
   floatLabelControl = new FormControl('auto' as FloatLabelType);
-  options = this._formBuilder.group({
-    floatLabel: this.floatLabelControl,
-  });
 
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
@@ -72,7 +69,8 @@ export class UserLoginComponent implements OnInit {
     ngOnInit(): void {
         this.loginForm = this._formBuilder.group({
           emailFormControl: this.emailFormControl,
-          pwdFormControl: this.pwdFormControl
+          pwdFormControl: this.pwdFormControl,
+          floatLabel: this.floatLabelControl
         });
     }
 
