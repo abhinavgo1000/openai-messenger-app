@@ -1,1 +1,15 @@
-<p>new-user-page works!</p>
+<div class="new-user-page-content">
+    <app-translate-toolbar
+        (enClick)="switchLanguage($event)"
+        (esClick)="switchLanguage($event)"></app-translate-toolbar>
+    <h1>Create a new account</h1>
+    <h3>Enter your credentials below to register and get started.</h3>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Enter the details for your new account</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-user-signup></app-user-signup>
+        </mat-card-content>
+    </mat-card>
+</div>
