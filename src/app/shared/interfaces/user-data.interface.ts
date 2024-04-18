@@ -5,6 +5,6 @@ export interface UserData {
     imgAlt: string;
     email: string;
     telephone: string;
-    userName: string,
-    password: string,
+    userName: string;
+    password: string;
 }

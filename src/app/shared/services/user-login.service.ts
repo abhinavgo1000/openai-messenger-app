@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { UserLogin } from '../interfaces/user-login.interface';
+
 export interface User {
   id: number;
-  username: string;
-  token: string; 
+  email: string;
+  password: string;
 }
 
 @Injectable({
@@ -27,8 +29,8 @@ export class UserLoginService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(this.apiUrl, { username, password })
+  login(userLogin: UserLogin) {
+    return this.http.post<UserLogin>(this.apiUrl, userLogin)
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -42,8 +44,8 @@ export class UserLoginService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next({
       id: 0,
-      username: '',
-      token: ''
+      email: '',
+      password: ''
     });
   }
 }

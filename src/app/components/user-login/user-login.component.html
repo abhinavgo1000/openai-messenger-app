@@ -9,7 +9,6 @@
                     <input 
                         type="email" 
                         matInput 
-                        [(ngModel)]="email"
                         [formControl]="emailFormControl" 
                         [errorStateMatcher]="matcher"
                         placeholder="Ex. pat@example.com" />
@@ -27,7 +26,6 @@
                     <input 
                         type="password" 
                         matInput 
-                        [(ngModel)]="password"
                         [formControl]="pwdFormControl" 
                         [errorStateMatcher]="matcher"
                         placeholder="Enter your password" />

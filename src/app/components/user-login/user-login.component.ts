@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { 
-  FormBuilder, 
+  FormBuilder,
+  FormGroup, 
   FormControl, 
   FormsModule, 
   ReactiveFormsModule,
@@ -45,10 +46,9 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.scss'
 })
-export class UserLoginComponent {
+export class UserLoginComponent implements OnInit {
 
-  email: string = '';
-  password: string = '';
+  loginForm: FormGroup;
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   pwdFormControl = new FormControl('', [Validators.required, Validators.pattern(StrongPasswordRegx)]);
@@ -66,13 +66,21 @@ export class UserLoginComponent {
   constructor(
     private _formBuilder: FormBuilder,
     private store: Store,
+    private router: Router,
     private loginService: UserLoginService) {}
 
+    ngOnInit(): void {
+        this.loginForm = this._formBuilder.group({
+          emailFormControl: this.emailFormControl,
+          pwdFormControl: this.pwdFormControl
+        });
+    }
+
   login() {
-    this.loginService.login('username', 'password').subscribe({
+    this.loginService.login(this.loginForm.value).subscribe({
       next: (data) => {
         console.log('Login successful', data);
-        // Navigate to dashboard or home page
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         console.log('Login failed', err);
