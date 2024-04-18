@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { 
   FormBuilder, 
   FormControl, 
@@ -32,6 +33,7 @@ export class LoginErrorStateMatcher implements ErrorStateMatcher {
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,

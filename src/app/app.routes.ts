@@ -41,6 +41,13 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'new-user', 
+        loadComponent: () =>
+            import('./components/new-user-page/new-user-page.component')
+                .then(m => m.NewUserPageComponent),
+        providers: []
+    },
+    {
         path: '**',
         component: NotFoundPageComponent
     }
