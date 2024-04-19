@@ -48,6 +48,13 @@ export const routes: Routes = [
         providers: []
     },
     {
+        path: 'new-user-success', 
+        loadComponent: () =>
+            import('./components/new-user-success-page/new-user-success-page.component')
+                .then(m => m.NewUserSuccessPageComponent),
+        providers: []
+    },
+    {
         path: '**',
         component: NotFoundPageComponent
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { 
   FormBuilder,
   FormGroup, 
@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { UserDataService } from '../../shared/services/user-data.service';
 
@@ -41,7 +42,8 @@ export class SignupErrorStateMatcher implements ErrorStateMatcher {
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSlideToggleModule
   ],
   templateUrl: './user-signup.component.html',
   styleUrl: './user-signup.component.scss'
@@ -63,9 +65,12 @@ export class UserSignupComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
 
+  hasAcceptedTC = false;
+
   constructor(
     private _formBuilder: FormBuilder,
     private store: Store,
+    private router: Router,
     private dataService: UserDataService) {}
 
   ngOnInit(): void {
@@ -84,9 +89,8 @@ export class UserSignupComponent implements OnInit {
       this.dataService.addUser(this.signupForm.value).subscribe({
         next: (user) => {
           console.log('User created:', user);
-          // Optionally redirect or clear form
           this.signupForm.reset();
-          // Redirect logic or success message
+          this.router.navigate(['/new-user-success']);
         },
         error: (error) => {
           console.error('Error creating user:', error);
@@ -96,7 +100,15 @@ export class UserSignupComponent implements OnInit {
     }
   }
 
-  acceptTandC() {}
+  acceptTandC() {
+    this.hasAcceptedTC = !(this.hasAcceptedTC);
+  }
+
+  emailSignUp() {}
+
+  cancelSignup() {
+    this.router.navigate(['/login']);
+  }
 
   getFloatLabelValue(): FloatLabelType {
     return this.floatLabelControl.value || 'auto';

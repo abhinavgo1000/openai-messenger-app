@@ -70,6 +70,7 @@
                         matInput 
                         [formControl]="pwdFormControl" 
                         [errorStateMatcher]="matcher"
+                        autocomplete="on"
                         placeholder="Enter your password" />
                         @if (pwdFormControl.hasError('pattern') && !pwdFormControl.hasError('required')) {
                             <mat-error>Please enter a valid password</mat-error>
@@ -85,14 +86,27 @@
                     (change)="acceptTandC()">I accept the Terms and Conditions</mat-checkbox>
             </div>
             <div>
+                <mat-slide-toggle
+                    class="toggle-margin"
+                    aria-label="sign up for email notifications"
+                    (change)="emailSignUp()">Sign me up for email notifications about my account</mat-slide-toggle>
+            </div>
+            <div>
                 <button 
                     type="submit"
                     mat-raised-button 
                     color="primary"
+                    [disabled]="!hasAcceptedTC"
                     matTooltip="Click to sign in"
                     [matTooltipPosition]="position.value!"
                     aria-label="Submit button for user login"
                     (click)="signup()">Create Account</button>
+                <span class="cancel-button">
+                    <button 
+                        type="button"
+                        mat-raised-button
+                        (click)="cancelSignup()">Cancel</button>
+                </span>
             </div>
             <p>Already have an account? <a routerLink="/login">Sign in</a></p>
         </fieldset>

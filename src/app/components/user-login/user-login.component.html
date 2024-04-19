@@ -28,6 +28,7 @@
                         matInput 
                         [formControl]="pwdFormControl" 
                         [errorStateMatcher]="matcher"
+                        autocomplete="on"
                         placeholder="Enter your password" />
                         @if (pwdFormControl.hasError('pattern') && !pwdFormControl.hasError('required')) {
                             <mat-error>Please enter a valid password</mat-error>
