@@ -49,9 +49,9 @@
 </mat-dialog-content>
 <mat-dialog-actions>
     @if (data.acceptLabel !== '') {
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{data.acceptLabel}}</button>
+        <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>{{data.acceptLabel}}</button>
     }
     @if (data.closeLabel !== '') {
-        <button mat-button (click)="onNoClick()">{{data.closeLabel}}</button>
+        <button mat-button color="warn" (click)="onNoClick()">{{data.closeLabel}}</button>
     }
 </mat-dialog-actions>

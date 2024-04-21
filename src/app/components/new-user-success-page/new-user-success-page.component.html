@@ -1,1 +1,71 @@
-<p>new-user-success-page works!</p>
+<div class="not-found-page-content">
+    <app-translate-toolbar
+        (enClick)="switchLanguage($event)"
+        (esClick)="switchLanguage($event)"></app-translate-toolbar>
+    <h1>Success! Your account is created!</h1>
+    <h3>Now you can sign in and start connecting to your loved ones. Navigate to the login page and get connect right away!</h3>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Some further actions you can take</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-accordion>
+                <mat-expansion-panel
+                    (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Login
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Click to {{panelOpenState ? 'expand' : 'collapse'}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <button mat-button color="primary" (click)="navigateToLogin()">Go to Login</button>
+                </mat-expansion-panel>
+                <mat-expansion-panel
+                    (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Github
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Click to {{panelOpenState ? 'expand' : 'collapse'}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>
+                        <a 
+                            href="https://github.com/abhinavgo1000" 
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Github
+                        </a>
+                    </p>
+                </mat-expansion-panel>
+                <mat-expansion-panel 
+                    (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            LinkedIn
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Click to {{panelOpenState ? 'expand' : 'collapse'}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>
+                        <a
+                            href="https://www.linkedin.com/in/abhinav-goel-41a87a20b/"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            LinkedIn
+                        </a>
+                    </p>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card-content>
+    </mat-card>
+</div>
