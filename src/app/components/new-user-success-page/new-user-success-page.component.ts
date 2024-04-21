@@ -26,7 +26,9 @@ import { DynamicTranslationDirective } from '../../shared/directives/dynamic-tra
 })
 export class NewUserSuccessPageComponent {
 
-  panelOpenState = false;
+  panel1OpenState = false;
+  panel2OpenState = false;
+  panel3OpenState = false;
 
   constructor(
     private router: Router,

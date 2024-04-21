@@ -23,7 +23,8 @@ import { DynamicTranslationDirective } from '../../shared/directives/dynamic-tra
 })
 export class AboutMePageComponent {
 
-  panelOpenState = false;
+  panel1OpenState = false;
+  panel2OpenState = false;
 
   constructor(private translate: TranslateService) {}
 
