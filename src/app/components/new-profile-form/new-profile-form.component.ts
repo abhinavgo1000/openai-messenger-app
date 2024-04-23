@@ -12,16 +12,17 @@ import {
   NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 
-import { UserDataService } from '../../shared/services/user-data.service';
-
-import { StrongPasswordRegx } from '../../shared/regex/password-regex';
-
-export class UpdateErrorStateMatcher implements ErrorStateMatcher {
+export class SignupErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
@@ -29,63 +30,50 @@ export class UpdateErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-user-update',
+  selector: 'app-new-profile-form',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     CommonModule,
     RouterLink,
     FormsModule,
     ReactiveFormsModule,
+    MatStepperModule,
     MatFormFieldModule,
+    MatDatepickerModule,
     MatInputModule,
     MatCheckboxModule,
+    MatButtonModule,
     MatTooltipModule
   ],
-  templateUrl: './user-update.component.html',
-  styleUrl: './user-update.component.scss'
+  templateUrl: './new-profile-form.component.html',
+  styleUrl: './new-profile-form.component.scss'
 })
-export class UserUpdateComponent implements OnInit {
+export class NewProfileFormComponent implements OnInit {
 
-  updateForm: FormGroup;
+  newProfileForm: FormGroup;
 
-  profileNameControl = new FormControl('', [Validators.required]);
-  userNameFormControl = new FormControl('', [Validators.required]);
-  telephoneFormControl = new FormControl('', [Validators.required]);
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  pwdFormControl = new FormControl('', [Validators.required, Validators.pattern(StrongPasswordRegx)]);
+  dobControl = new FormControl('', [Validators.required]);
+  sexControl = new FormControl('', [Validators.required]);
+  addressControl = new FormControl('', [Validators.required]);
+  imgSrcControl = new FormControl('');
+  imgAltControl = new FormControl('');
 
-  matcher = new UpdateErrorStateMatcher();
+  matcher = new SignupErrorStateMatcher();
 
   floatLabelControl = new FormControl('auto' as FloatLabelType);
 
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
 
-  hasAcceptedTC = false;
-
   constructor(
     private _formBuilder: FormBuilder,
     private store: Store,
     private router: Router,
-    private dataService: UserDataService
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.updateForm = this._formBuilder.group({
-      profileNameControl: this.profileNameControl,
-      userNameFormControl: this.userNameFormControl,
-      telephoneFormControl: this.telephoneFormControl,
-      emailFormControl: this.emailFormControl,
-      pwdFormControl: this.pwdFormControl,
-      floatLabel: this.floatLabelControl
-    });
-  }
-
-  acceptTandC() {
-    this.hasAcceptedTC = !(this.hasAcceptedTC);
-  }
-
-  getFloatLabelValue(): FloatLabelType {
-    return this.floatLabelControl.value || 'auto';
+      
   }
 }

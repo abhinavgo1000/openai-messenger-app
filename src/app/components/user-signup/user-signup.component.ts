@@ -15,6 +15,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -71,6 +72,7 @@ export class UserSignupComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private store: Store,
     private router: Router,
+    private _snackBar: MatSnackBar,
     private dataService: UserDataService) {}
 
   ngOnInit(): void {
@@ -90,7 +92,7 @@ export class UserSignupComponent implements OnInit {
         next: (user) => {
           console.log('User created:', user);
           this.signupForm.reset();
-          this.router.navigate(['/new-user-success']);
+          this.router.navigate(['/new-profile']);
         },
         error: (error) => {
           console.error('Error creating user:', error);
@@ -102,12 +104,19 @@ export class UserSignupComponent implements OnInit {
 
   acceptTandC() {
     this.hasAcceptedTC = !(this.hasAcceptedTC);
+    if (this.hasAcceptedTC) {
+      this.openSnackBar('The form can now be submitted', 'Close');
+    }
   }
 
   emailSignUp() {}
 
   cancelSignup() {
     this.router.navigate(['/login']);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
   getFloatLabelValue(): FloatLabelType {

@@ -1,0 +1,15 @@
+<div class="new-profile-page-content">
+    <app-translate-toolbar
+        (enClick)="switchLanguage($event)"
+        (esClick)="switchLanguage($event)"></app-translate-toolbar>
+    <h1>Now enter your profile details</h1>
+    <h3>Tell us a bit more about you so that we can know you better.</h3>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Enter your profile details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-new-profile-form></app-new-profile-form>
+        </mat-card-content>
+    </mat-card>
+</div>

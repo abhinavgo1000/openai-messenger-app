@@ -48,6 +48,13 @@ export const routes: Routes = [
         providers: []
     },
     {
+        path: 'new-profile', 
+        loadComponent: () =>
+            import('./components/new-profile-page/new-profile-page.component')
+                .then(m => m.NewProfilePageComponent),
+        providers: []
+    },
+    {
         path: 'new-user-success', 
         loadComponent: () =>
             import('./components/new-user-success-page/new-user-success-page.component')

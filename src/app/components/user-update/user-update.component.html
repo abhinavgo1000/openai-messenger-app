@@ -1,1 +1,90 @@
-<p>user-update works!</p>
+<div class="update-container">
+    <form
+        [formGroup]="updateForm">
+        <fieldset>
+            <legend>Update account area form</legend>
+            <div>
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Name</mat-label>
+                    <input 
+                        type="text" 
+                        matInput 
+                        [formControl]="profileNameControl" 
+                        [errorStateMatcher]="matcher"
+                        placeholder="Enter your Name" />
+                        @if (profileNameControl.hasError('required')) {
+                            <mat-error>Email is <strong>required</strong></mat-error>
+                        }
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Username</mat-label>
+                    <input 
+                        type="text" 
+                        matInput 
+                        [formControl]="userNameFormControl" 
+                        [errorStateMatcher]="matcher"
+                        placeholder="EEnter your Username" />
+                        @if (userNameFormControl.hasError('required')) {
+                            <mat-error>Username is <strong>required</strong></mat-error>
+                        }
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Phone Number</mat-label>
+                    <input 
+                        type="tel" 
+                        matInput 
+                        [formControl]="telephoneFormControl" 
+                        [errorStateMatcher]="matcher"
+                        placeholder="Enter your Phone Number" />
+                        @if (telephoneFormControl.hasError('required')) {
+                            <mat-error>Phone Number is <strong>required</strong></mat-error>
+                        }
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Email</mat-label>
+                    <input 
+                        type="email" 
+                        matInput 
+                        [formControl]="emailFormControl" 
+                        [errorStateMatcher]="matcher"
+                        placeholder="Ex. pat@example.com" />
+                        @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+                            <mat-error>Please enter a valid email address</mat-error>
+                        }
+                        @if (emailFormControl.hasError('required')) {
+                            <mat-error>Email is <strong>required</strong></mat-error>
+                        }
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Password</mat-label>
+                    <input 
+                        type="password" 
+                        matInput 
+                        [formControl]="pwdFormControl" 
+                        [errorStateMatcher]="matcher"
+                        autocomplete="on"
+                        placeholder="Enter your password" />
+                        @if (pwdFormControl.hasError('pattern') && !pwdFormControl.hasError('required')) {
+                            <mat-error>Please enter a valid password</mat-error>
+                        }
+                        @if (pwdFormControl.hasError('required')) {
+                            <mat-error>Password is <strong>required</strong></mat-error>
+                        }
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-checkbox 
+                    class="checkbox-margin"
+                    (change)="acceptTandC()">I accept the Terms and Conditions</mat-checkbox>
+            </div>
+        </fieldset>
+    </form>
+</div>

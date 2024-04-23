@@ -14,12 +14,10 @@ import { Store } from '@ngrx/store';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
-
-import { UserDataService } from '../../shared/services/user-data.service';
-
-import { StrongPasswordRegx } from '../../shared/regex/password-regex';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export class UpdateErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,8 +27,9 @@ export class UpdateErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-user-update',
+  selector: 'app-profile-update',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     CommonModule,
     RouterLink,
@@ -38,21 +37,18 @@ export class UpdateErrorStateMatcher implements ErrorStateMatcher {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
     MatCheckboxModule,
     MatTooltipModule
   ],
-  templateUrl: './user-update.component.html',
-  styleUrl: './user-update.component.scss'
+  templateUrl: './profile-update.component.html',
+  styleUrl: './profile-update.component.scss'
 })
-export class UserUpdateComponent implements OnInit {
+export class ProfileUpdateComponent implements OnInit {
 
-  updateForm: FormGroup;
+  profileForm: FormGroup;
 
-  profileNameControl = new FormControl('', [Validators.required]);
-  userNameFormControl = new FormControl('', [Validators.required]);
-  telephoneFormControl = new FormControl('', [Validators.required]);
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  pwdFormControl = new FormControl('', [Validators.required, Validators.pattern(StrongPasswordRegx)]);
+  dobControl = new FormControl<Date | null>(null, [Validators.required]);
 
   matcher = new UpdateErrorStateMatcher();
 
@@ -61,28 +57,14 @@ export class UserUpdateComponent implements OnInit {
   positionOptions: TooltipPosition[] = ['below'];
   position = new FormControl(this.positionOptions[0]);
 
-  hasAcceptedTC = false;
-
   constructor(
     private _formBuilder: FormBuilder,
     private store: Store,
     private router: Router,
-    private dataService: UserDataService
   ) {}
 
   ngOnInit(): void {
-    this.updateForm = this._formBuilder.group({
-      profileNameControl: this.profileNameControl,
-      userNameFormControl: this.userNameFormControl,
-      telephoneFormControl: this.telephoneFormControl,
-      emailFormControl: this.emailFormControl,
-      pwdFormControl: this.pwdFormControl,
-      floatLabel: this.floatLabelControl
-    });
-  }
-
-  acceptTandC() {
-    this.hasAcceptedTC = !(this.hasAcceptedTC);
+      
   }
 
   getFloatLabelValue(): FloatLabelType {

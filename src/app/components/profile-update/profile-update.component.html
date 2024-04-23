@@ -1,0 +1,20 @@
+<div class="update-container">
+    <form
+        [formGroup]="profileForm">
+        <fieldset>
+            <legend>Profile update area</legend>
+            <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                <mat-label>Date of Birth</mat-label>
+                <input 
+                    placeholder="Choose your DOB" 
+                    matInput 
+                    [formControl]="dobControl"
+                    [errorStateMatcher]="matcher"
+                    [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </fieldset>
+    </form>
+</div>
