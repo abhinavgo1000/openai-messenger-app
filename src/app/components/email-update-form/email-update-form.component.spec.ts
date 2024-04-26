@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VideoPlayerComponent } from './video-player.component';
+import { EmailUpdateFormComponent } from './email-update-form.component';
 
-describe('VideoPlayerComponent', () => {
-  let component: VideoPlayerComponent;
-  let fixture: ComponentFixture<VideoPlayerComponent>;
+describe('EmailUpdateFormComponent', () => {
+  let component: EmailUpdateFormComponent;
+  let fixture: ComponentFixture<EmailUpdateFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VideoPlayerComponent]
+      imports: [EmailUpdateFormComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(VideoPlayerComponent);
+    fixture = TestBed.createComponent(EmailUpdateFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

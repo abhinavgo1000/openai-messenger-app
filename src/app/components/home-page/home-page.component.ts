@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { VideoPlayerComponent } from "../video-player/video-player.component";
+import { EmailUpdateFormComponent } from '../email-update-form/email-update-form.component';
 import { TranslateToolbarComponent } from '../translate-toolbar/translate-toolbar.component';
 
 import { DynamicTranslationDirective } from '../../shared/directives/dynamic-translation.directive';
@@ -19,7 +19,7 @@ import { DynamicTranslationDirective } from '../../shared/directives/dynamic-tra
         CommonModule,
         MatCardModule,
         TranslateModule,
-        VideoPlayerComponent,
+        EmailUpdateFormComponent,
         TranslateToolbarComponent,
         DynamicTranslationDirective
     ]

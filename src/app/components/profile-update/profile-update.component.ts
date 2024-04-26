@@ -15,6 +15,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldModule, FloatLabelType } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule, TooltipPosition } from '@angular/material/tooltip';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -38,6 +40,8 @@ export class UpdateErrorStateMatcher implements ErrorStateMatcher {
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatSelectModule,
+    MatAutocompleteModule,
     MatCheckboxModule,
     MatTooltipModule
   ],
