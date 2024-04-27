@@ -3,18 +3,79 @@
         [formGroup]="profileForm">
         <fieldset>
             <legend>Profile update area</legend>
-            <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
-                <mat-label>Date of Birth</mat-label>
-                <input 
-                    placeholder="Choose your DOB" 
-                    matInput 
-                    [formControl]="dobControl"
-                    [errorStateMatcher]="matcher"
-                    [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            <div class="div-margin">
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Date of Birth</mat-label>
+                    <input 
+                        placeholder="Choose your DOB" 
+                        matInput 
+                        [formControl]="dobControl"
+                        [errorStateMatcher]="matcher"
+                        [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="div-margin">
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Gender</mat-label>
+                    <mat-select [formControl]="sexControl" [errorStateMatcher]="matcher">
+                        <mat-option>None</mat-option>
+                        @for (gender of genders; track gender) {
+                            <mat-option [value]="gender">{{gender}}</mat-option>
+                        }
+                    </mat-select>
+                    @if (sexControl.hasError('required')) {
+                        <mat-error>Gender is <strong>required</strong></mat-error>
+                    }
+                    <mat-hint>{{sexControl.value}}</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="div-margin">
+                <mat-form-field class="half-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Address</mat-label>
+                    <input 
+                        type="text"
+                        placeholder="Enter your address"
+                        aria-label="Address field"
+                        matInput
+                        [formControl]="addressControl"
+                        [errorStateMatcher]="matcher"
+                        [matAutocomplete]="auto" />
+                    <mat-autocomplete #auto="matAutocomplete">
+                        @for (option of filteredOptions | async; track option) {
+                            <mat-option [value]="option">{{option}}</mat-option>
+                        }
+                    </mat-autocomplete>
+                    @if (addressControl.hasError('required')) {
+                        <mat-error>Address is <strong>required</strong></mat-error>
+                    }
+                    <mat-hint>Enter your address from the list above.</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="div-margin">
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Image Source URL</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        [formControl]="imgSrcControl"
+                        placeholder="Enter the URL for your image source" />
+                    <mat-hint>The external URL must point to a valid image</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="div-margin">
+                <mat-form-field class="full-width" [floatLabel]="getFloatLabelValue()">
+                    <mat-label>Image Alt Text</mat-label>
+                    <input
+                        type="text"
+                        matInput
+                        [formControl]="imgAltControl"
+                        placeholder="Enter the alt text for your image" />
+                    <mat-hint>Enter a valid alt text for your image</mat-hint>
+                </mat-form-field>
+            </div>
         </fieldset>
     </form>
 </div>

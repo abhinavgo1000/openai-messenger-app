@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ComponentPortal } from '@angular/cdk/portal';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -30,12 +31,18 @@ import { DialogData } from '../../shared/interfaces/dialog-data.interface';
   templateUrl: './data-dialog.component.html',
   styleUrl: './data-dialog.component.scss'
 })
-export class DataDialogComponent {
+export class DataDialogComponent implements OnInit {
+
+  portal: ComponentPortal<any>;
 
   constructor(
     public dialogRef: MatDialogRef<DataDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {}
+
+  ngOnInit(): void {
+      
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
