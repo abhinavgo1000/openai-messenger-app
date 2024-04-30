@@ -41,7 +41,9 @@ export class DataDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      
+    if (this.data.component !== undefined) {
+      this.portal = new ComponentPortal(this.data.component);
+    }
   }
 
   onNoClick(): void {

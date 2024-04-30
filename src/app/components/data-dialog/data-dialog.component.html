@@ -3,49 +3,7 @@
     @if (data.description !== '') {
         <p>{{data.description}}</p>
     }
-    @if (data.imgAlt !== '' && data.imgSrc !== '') {
-        <img src="{{data.imgSrc}}" alt="{{data.imgAlt}}" />
-    }
-    @if (data.profileName !== '') {
-        <div class="full-width">
-            <mat-form-field>
-                <mat-label>Name</mat-label>
-                <input type="text" placeholder="Your Name" matInput [(ngModel)]="data.profileName" />
-            </mat-form-field>
-        </div>
-    }
-    @if (data.userName !== '') {
-        <div class="full-width">
-            <mat-form-field>
-                <mat-label>User Name</mat-label>
-                <input type="text" placeholder="Your User Name" matInput [(ngModel)]="data.userName" />
-            </mat-form-field>
-        </div>
-    }
-    @if (data.password !== '') {
-        <div class="full-width">
-            <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input type="password" placeholder="Your Password" matInput [(ngModel)]="data.password" />
-            </mat-form-field>
-        </div>
-    }
-    @if (data.email !== '') {
-        <div class="full-width">
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input type="email" placeholder="Your Email Address" matInput [(ngModel)]="data.email" />
-            </mat-form-field>
-        </div>
-    }
-    @if (data.telephone !== '') {
-        <div class="full-width">
-            <mat-form-field>
-                <mat-label>Phone Number</mat-label>
-                <input type="tel" placeholder="Your Phone Number" matInput [(ngModel)]="data.telephone" />
-            </mat-form-field>
-        </div>
-    }
+    <ng-template [cdkPortalOutlet]="portal"></ng-template>
 </mat-dialog-content>
 <mat-dialog-actions>
     @if (data.acceptLabel !== '') {
