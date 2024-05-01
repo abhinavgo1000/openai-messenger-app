@@ -66,13 +66,13 @@ export class UserLoginComponent implements OnInit {
     private router: Router,
     private loginService: UserLoginService) {}
 
-    ngOnInit(): void {
-        this.loginForm = this._formBuilder.group({
-          emailFormControl: this.emailFormControl,
-          pwdFormControl: this.pwdFormControl,
-          floatLabel: this.floatLabelControl
-        });
-    }
+  ngOnInit(): void {
+    this.loginForm = this._formBuilder.group({
+      emailFormControl: this.emailFormControl,
+      pwdFormControl: this.pwdFormControl,
+      floatLabel: this.floatLabelControl
+    });
+  }
 
   login() {
     this.loginService.login(this.loginForm.value).subscribe({
