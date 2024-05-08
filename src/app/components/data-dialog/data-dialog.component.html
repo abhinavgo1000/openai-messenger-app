@@ -3,7 +3,9 @@
     @if (data.description !== '') {
         <p>{{data.description}}</p>
     }
-    <ng-template [cdkPortalOutlet]="portal"></ng-template>
+    @if (data.component !== '') {
+        <ng-container #placeToRender></ng-container>
+    }
 </mat-dialog-content>
 <mat-dialog-actions>
     @if (data.acceptLabel !== '') {

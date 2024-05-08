@@ -1,6 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ComponentPortal } from '@angular/cdk/portal';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -14,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { DialogData } from '../../shared/interfaces/dialog-data.interface';
+import { ProfileUpdateComponent } from '../profile-update/profile-update.component';
+import { UserUpdateComponent } from '../user-update/user-update.component';
 
 @Component({
   selector: 'app-data-dialog',
@@ -33,7 +34,7 @@ import { DialogData } from '../../shared/interfaces/dialog-data.interface';
 })
 export class DataDialogComponent implements OnInit {
 
-  portal: ComponentPortal<any>;
+  @ViewChild('placeToRender', {read: ViewContainerRef}) placeToRender: ViewContainerRef;
 
   constructor(
     public dialogRef: MatDialogRef<DataDialogComponent>,
@@ -41,8 +42,10 @@ export class DataDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.data.component !== undefined) {
-      this.portal = new ComponentPortal(this.data.component);
+    if (this.data.component === 'profile-update') {
+      let dialogForm = this.placeToRender.createComponent(ProfileUpdateComponent);
+    } else if (this.data.component === 'user-update') {
+      let dialogForm = this.placeToRender.createComponent(UserUpdateComponent);
     }
   }
 

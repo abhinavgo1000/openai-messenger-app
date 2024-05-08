@@ -1,7 +1,7 @@
 export interface DialogData {
     title: string;
     description: string;
-    component: any;
+    component: string;
     acceptLabel: string;
     closeLabel: string;
 }
